@@ -5,14 +5,8 @@ import (
 )
 
 func main() {
-	var (
-		i int
-		j float64
-		k bool
-		l string
-	)
-	// loging
-	fmt.Println(i, j, k, l)
+	defer fmt.Printf("Hello\n")
+	fmt.Printf("World")
 }
 
 /*
@@ -65,7 +59,7 @@ var (
 	Note this way those variable whose value
 	is not initialized are automatically
 	initialized as int to 0 , string to "",
-	bool to false, float to 0.0
+	bool to false, float to 0
 ]
 
 
@@ -76,6 +70,10 @@ import (
 )
 
 fmt.Println(reflect.TypeOf(variable))
+
+[ Another way of finding a type ]
+
+fmt.Printf("Type is : %T \n", variable)
 
 */
 
@@ -88,7 +86,7 @@ fmt.Println("Hello world") // prints whole line means ends with new line
 */
 
 /*
-###### Functions defination ######
+###### Functions ######
 
 func singleReturnAndCombinedTypeDeclaredParams (x, y int) int {
 	return x + y
@@ -103,6 +101,23 @@ func namedReturnAndIndividualTypeDeclaredParams (name string, age int) (_name st
 	_age = age
 	return
 }
+
+func main() {
+	defer fmt.Printf("Hello\n") // After
+	fmt.Printf("World") // Before
+}
+[ Note defer statement is executed after the surrounding function returns ]
+[ But the arguments are evaluated at start ]
+
+
+func main() {
+	defer fmt.Printf("4")
+	defer fmt.Printf("3")
+	defer fmt.Printf("2")
+	defer fmt.Printf("1")
+	fmt.Printf("0") // Before
+}
+[ Note defer calls are stored in a stack so as they are called ]
 
 */
 
@@ -121,4 +136,145 @@ x, y = (func(x, y int) (_x,_y int) {
 				 return
 			})(x, y)
 
+*/
+
+/*
+###### Type casting in go ######
+j := 23.3 // float64
+i := int(j) // int
+k := float64(i) //float64
+
+import (
+	"strconv"
+)
+[ This is a utility package for type conversions and parsing ]
+
+*/
+
+/*
+###### For loop ######
+
+for i := 0; i <= 20000; i++ {
+	// loging
+	fmt.Println(i)
+}
+
+[ Another way of for loop]
+
+var counter int = 1
+for counter < 50 {
+
+	// loging
+	counter += counter
+	fmt.Println(counter)
+}
+
+[ for loop becomes while loop ]
+
+for true {
+	fmt.Println("Acting like while loop");
+}
+
+[ If you ommit condition it will run infinitly ]
+
+for {
+		// Logging
+		fmt.Println("Runnig Infinitely")
+}
+
+*/
+
+/*
+###### if else Statement ######
+
+if x != 0 {
+	fmt.Println("x is not equal to 0")
+} else if x == 0 {
+	fmt.Println("x is equal to 0")
+} else {
+	fmt.Println("I hope i will run some day")
+}
+
+[ You can run statement or declare variables before comparing ]
+
+if x := 3; x < 23 {
+		fmt.Println("I am less then 23")
+	} else {
+		fmt.Println("I hope i will run some day")
+}
+
+[ Variables declared in if are also available in else ]
+
+if x := 3; x < 23 {
+		fmt.Println("I am less then 23")
+	} else if x > 23 {
+		//x can be accessed here
+		fmt.Println("I hope i will run some day")
+}
+
+*/
+
+/*
+###### Scope of variables ######
+
+valibales are block scoped
+
+var j int = 23 // Global
+
+{
+	var i int = 0 // local scoped
+
+	i // known
+	j // known
+
+}
+
+i // unknown
+j // known
+
+
+*/
+
+/*
+###### Switch Statement in go ######
+
+switch runtime.GOOS {
+	case "linux":
+		fmt.Println("Linux")
+	case "darwin":
+		fmt.Println("OSX")
+	default:
+		fmt.Println("any")
+	}
+
+[ Note there is no need of break statement ]
+---------
+
+fmt.Println("When's Saturday?")
+today := time.Now().Weekday()
+switch time.Saturday {
+case today + 0:
+	fmt.Println("Today.")
+case today + 1:
+	fmt.Println("Tomorrow.")
+case today + 2:
+	fmt.Println("In two days.")
+default:
+	fmt.Println("Too far away.")
+}
+
+[ Note switch variables are not constant ]
+---------
+
+t := time.Now()
+switch {
+case t.Hour() < 12:
+	fmt.Println("Good morning!")
+case t.Hour() < 17:
+	fmt.Println("Good afternoon.")
+default:
+	fmt.Println("Good evening.")
+}
+
+[ Note switch without variable is true a clean way of writing long if else chains ]
 */
