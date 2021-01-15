@@ -4,12 +4,17 @@ import (
 	"fmt"
 )
 
+type Point struct {
+	X int
+	Y int
+}
+
 func main() {
-	x := 234.25
-	ptr := &x
+	alphabets := []string{"a", "b", "c", "d", "e"} // Shortcut way
+	characters := alphabets[0:3]
 
 	// Logging
-	fmt.Printf("Pointer is :%f \n", *ptr)
+	fmt.Printf("Output :%T \n", characters)
 }
 
 /*
@@ -298,5 +303,38 @@ fmt.Println(j)  // Logging changed value(change done through pointer) of j
 
 x := 24.243
 ptr := &x       // shortcut way of creating a pointer
+
+*/
+
+/*
+###### Structs ######
+
+type Point struct {
+	X int
+	Y int
+}
+
+p1 := Point{42, 325}           // Creating instance
+or
+var p1 Point = Point{42, 325}  // Creating instance
+or
+var p1 Point = Point{X: 2}     // Specific assignment initialization urordered
+[ unspecified fields will be initialized in a default way ]
+or
+var p1 Point = Point{}         // Default initialization
+
+p1.X                           // Accessing fields
+
+pointer := &p1                 // Pointer to struct
+pointer.Y = 23                 // Acessing fiels from pointer
+
+*/
+
+/*
+###### Arrays ######
+var alphabet [5]string                                      // Declaring, 5 is the length of array
+var alphabets [5]string = [5]string{"a","b","c","d","e"}    // Declarative initialization
+alphabets := [5]string{"a","b","c","d","e"}                 // Shortcut way
+alphabets[0]                                                // Accessing values
 
 */
