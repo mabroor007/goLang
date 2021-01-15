@@ -5,8 +5,11 @@ import (
 )
 
 func main() {
-	defer fmt.Printf("Hello\n")
-	fmt.Printf("World")
+	x := 234.25
+	ptr := &x
+
+	// Logging
+	fmt.Printf("Pointer is :%f \n", *ptr)
 }
 
 /*
@@ -277,4 +280,23 @@ default:
 }
 
 [ Note switch without variable is true a clean way of writing long if else chains ]
+*/
+
+/*
+###### Pointers ######
+
+var i int = 24  // simple variable
+var p *int = &i // pointer to i variable
+fmt.Println(*p) // Logging value at pointer
+*p = 234        // changing value at pointer
+fmt.Println(i)  // Logging changed value(change done through pointer) of i
+j := 234				// Declaring an other variable
+p = &j          // Assigning p pointer new adress of j variable AKA referencing
+fmt.Println(*p) // Logging value(representing value of j) at pointer
+*p = 234        // changing value(changing value of j) at pointer AKA dereferencing
+fmt.Println(j)  // Logging changed value(change done through pointer) of j
+
+x := 24.243
+ptr := &x       // shortcut way of creating a pointer
+
 */
