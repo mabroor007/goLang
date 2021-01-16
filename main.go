@@ -1,20 +1,9 @@
 package main
 
-import (
-	"fmt"
-)
-
-type Point struct {
-	X int
-	Y int
-}
+import "fmt"
 
 func main() {
-	alphabets := []string{"a", "b", "c", "d", "e"} // Shortcut way
-	characters := alphabets[0:3]
-
-	// Logging
-	fmt.Printf("Output :%T \n", characters)
+	fmt.Println("Hai go!")
 }
 
 /*
@@ -328,6 +317,15 @@ p1.X                           // Accessing fields
 pointer := &p1                 // Pointer to struct
 pointer.Y = 23                 // Acessing fiels from pointer
 
+// This is a slice created using struct
+persons := []struct {
+	name string
+	age  int
+}{
+	{name: "Mabroor Ahmad", age: 20},
+	{name: "Ghazi Hassan", age: 21},
+}
+
 */
 
 /*
@@ -336,5 +334,80 @@ var alphabet [5]string                                      // Declaring, 5 is t
 var alphabets [5]string = [5]string{"a","b","c","d","e"}    // Declarative initialization
 alphabets := [5]string{"a","b","c","d","e"}                 // Shortcut way
 alphabets[0]                                                // Accessing values
+
+// Iterate over elements of array
+	for idx, val := range arr {
+		fmt.Printf("x:%v v:%v\n", idx, val)
+	}
+
+	or
+
+	for i := range pow {
+		fmt.Printf("output: %d\n", i)
+	}
+
+	or if you dont want idx
+
+	for _, val := range pow {
+		fmt.Printf("output: %d\n", val)
+	}
+
+*/
+
+/*
+###### Slice ######
+
+aSlice := alphabets[0:3]									// Creating a slice from an array
+aSlice[0] = "xxx"											// Changing the value in the slice
+
+[
+    Note slice is just a reference to the array. Modifing it
+    will modify the value of the main array so be carefull
+]
+
+s := []int{235,24,36,324,36}								// Direct initialization
+s = s[:0]													// Slice the slice to give it zero length.
+s = s[:4]													// Extend its length.
+s = s[2:]													// Drop its first two values.
+aSlice := alphabets[0:3]									// [i,j] i start_idx , j end_idx
+
+-------Dynamic arrays
+// make function is used to create dynamic arrays
+// make([]type,len,cap)
+
+b := make([]int, 0, 5) // len(b)=0, cap(b)=5
+b = b[:cap(b)] // len(b)=5, cap(b)=5
+b = b[1:]      // len(b)=4, cap(b)=4
+
+// 2d Array using slice
+
+	board := [][]string{
+		[]string{"_", "_", "_"},
+		[]string{"_", "_", "_"},
+		[]string{"_", "_", "_"},
+	}
+
+	or
+
+	matrix := [][]int{
+		{21, 23, 52},
+		{28, 22, 53},
+		{35, 74, 98},
+	}
+
+-------Adding element to a slice
+// element is added using append function
+
+	append(Slice,element) // returns slice with added element
+
+	board := [][]string{
+		{"_", "_", "_"},
+		{"_", "_", "_"},
+		{"_", "_", "_"},
+	}
+
+	board = append(board,
+		[]string{"_", "_", "_"},
+	)
 
 */
