@@ -2,8 +2,32 @@ package main
 
 import "fmt"
 
+type Employee struct {
+	name string
+	age  int
+}
+
+func (E Employee) changeNameByValue(val string) string {
+	E.name = E.name + val
+	return E.name
+}
+
+func (E *Employee) changeNameByRef(val string) {
+	E.name = E.name + val
+}
+
+func (E Employee) showEmployee() {
+	fmt.Printf("Employee Name:%v | Employee age:%v \n", E.name, E.age)
+}
+
 func main() {
-	fmt.Println("Hai go!")
+	Mabroor := Employee{"Mabroor Ahmad", 20}
+
+	Mabroor.showEmployee()
+	Mabroor.changeNameByValue("Pro")
+	Mabroor.showEmployee()
+	// logging
+	//fmt.Println(aim)
 }
 
 /*
@@ -115,6 +139,25 @@ func main() {
 	fmt.Printf("0") // Before
 }
 [ Note defer calls are stored in a stack so as they are called ]
+
+[ Note like javascript functions in go can be passed as params to other functions ]
+
+	func sum(x, y int) int {
+		return x + y
+	}
+
+	func getSum(fn func(int, int) int) int {
+		return fn(3, 3)
+	}
+
+	// logging
+	fmt.Println(getSum(sum))
+
+[
+	Note go functions are simmilar to closures every call
+  will have seprate instance and have seprate variables
+	to work with
+]
 
 */
 
@@ -409,5 +452,81 @@ b = b[1:]      // len(b)=4, cap(b)=4
 	board = append(board,
 		[]string{"_", "_", "_"},
 	)
+
+*/
+
+/*
+###### Map ######
+These are like javascript objects which contain set of key value pairs
+
+	// Type
+	type Point struct {
+		x, y float64
+	}
+
+	// Creating map
+	aim := map[string]Point{
+		"mabroor": {23, 64},
+		"ghazi":   {634, 234},
+	}
+
+	// Another method
+	aim := make(map[string]Point)
+	aim["mabroor"] = Point{x: 23, y: 324}
+	aim["ghazi"] = Point{x: 21, y: 4}
+
+	// logging
+	fmt.Println(aim["mabroor"])
+
+
+	// Check if element is there
+	elem, ok := aim["mabroor"]
+
+	// ok is true if element is there
+	if ok {
+		fmt.Println("Element is Present:", elem)
+	} else {
+		fmt.Println("Element is not found!")
+	}
+
+*/
+
+/*
+###### Methods ######
+
+	Methods in go as go does not have classes but you can
+	create methods for structs
+
+	type Point struct {
+		x, y float64
+	}
+
+	// assigning a method to Point
+	func (p Point) render() {
+		fmt.Printf("x:%v,y:%v", p.x, p.y)
+	}
+
+	// Initializing
+	aim := Point{92.241, 523.234}
+
+	// Calling the method
+	aim.render()
+
+	// This is a regular functional way of doing the same thing as above
+	func renderPoint(p Point) {
+		fmt.Printf("x:%v,y:%v", p.x, p.y)
+	}
+
+	//Now we have to call it like regular function
+
+	render(aim)
+
+	// Try to pass values by reference as it wont duplicate things
+	// And also it would make you able to change the value
+	// and it is more efficent
+
+	func (E *Employee) changeNameByRef(val string) {
+		E.name = E.name + val
+	}
 
 */
